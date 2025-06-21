@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Api Asmara</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #fce4ec; color: #333; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh;}
+        .container { background-color: #fff; padding: 30px 40px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 600px; width: 100%; }
+        h2 { color: #c2185b; text-align: center; }
+        .sub-headline { text-align: center; margin-top: -10px; margin-bottom: 30px; font-weight: bold; }
+        .question { margin-bottom: 25px; }
+        label { font-weight: bold; display: block; margin-bottom: 8px; }
+        input[type="text"], input[type="tel"] { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        .radio-option { margin-bottom: 10px; }
+        .radio-option label { font-weight: normal; }
+        button { background-color: #ad1457; color: white; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; width: 100%; display: block; margin-top: 20px; }
+        button:hover { background-color: #c2185b; }
+        button:disabled { background-color: #ccc; cursor: not-allowed; }
+
+        /* Style untuk Pop-up */
+        .popup-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); display: none; 
+            justify-content: center; align-items: center; z-index: 1000;
+        }
+        .popup-content {
+            background: #fff; padding: 30px; border-radius: 8px; text-align: center;
+            max-width: 400px; margin: 20px; position: relative;
+        }
+        .popup-content h3 { color: #ad1457; margin-top: 0; }
+        .popup-content p { margin-bottom: 20px; }
+        .popup-content input { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Kuis Api Asmara</h2>
+        <p class="sub-headline">Jawaban dari kuis ini bersifat RAHASIA Untuk bunda. 100% Privasi Bunda kami jamin aman.</p>
+
+        <form id="kuesionerForm">
+            <div class="question">
+                <label for="nama">1. Halo! Agar lebih akrab, boleh tahu nama panggilan Bunda?</label>
+                <input type="text" id="nama" name="NamaPanggilan" placeholder="Contoh: Bunga" required>
+            </div>
+            <div class="question">
+                <label>2. Sudah berapa lama Bunda menikah?</label>
+                <div class="radio-option"><input type="radio" id="nikah1" name="LamaMenikah" value="Kurang dari 2 tahun" required> <label for="nikah1">Kurang dari 2 tahun</label></div>
+                <div class="radio-option"><input type="radio" id="nikah2" name="LamaMenikah" value="Antara 2 - 5 tahun"> <label for="nikah2">Antara 2 - 5 tahun</label></div>
+                <div class="radio-option"><input type="radio" id="nikah3" name="LamaMenikah" value="Antara 6 - 10 tahun"> <label for="nikah3">Antara 6 - 10 tahun</label></div>
+                <div class="radio-option"><input type="radio" id="nikah4" name="LamaMenikah" value="Lebih dari 10 tahun"> <label for="nikah4">Lebih dari 10 tahun</label></div>
+            </div>
+             <div class="question">
+                <label>3. Jika diibaratkan, 'api asmara' dalam pernikahan Bunda saat ini seperti apa?</label>
+                <div class="radio-option"><input type="radio" id="asmara1" name="ApiAsmara" value="Masih membara seperti di awal pernikahan" required> <label for="asmara1">Masih membara seperti di awal pernikahan.</label></div>
+                <div class="radio-option"><input type="radio" id="asmara2" name="ApiAsmara" value="Kadang menyala terang, kadang sedikit redup"> <label for="asmara2">Kadang menyala terang, kadang sedikit redup.</label></div>
+                <div class="radio-option"><input type="radio" id="asmara3" name="ApiAsmara" value="Terasa seperti api kecil yang butuh ditiup lagi"> <label for="asmara3">Terasa seperti api kecil yang butuh ditiup lagi.</label></div>
+                <div class="radio-option"><input type="radio" id="asmara4" name="ApiAsmara" value="Lebih terasa seperti bara hangat yang stabil"> <label for="asmara4">Lebih terasa seperti bara hangat yang stabil.</label></div>
+            </div>
+            <div class="question">
+                <label>4. Apa tantangan terbesar yang paling sering Bunda rasakan terkait hubungan intim?</label>
+                <div class="radio-option"><input type="radio" id="tantangan1" name="TantanganIntim" value="Saya pribadi merasa kurang percaya diri dengan tubuh saya" required> <label for="tantangan1">Saya pribadi merasa kurang percaya diri dengan tubuh saya.</label></div>
+                <div class="radio-option"><input type="radio" id="tantangan2" name="TantanganIntim" value="Gairah atau mood terasa sulit untuk muncul"> <label for="tantangan2">Gairah atau mood terasa sulit untuk muncul.</label></div>
+                <div class="radio-option"><input type="radio" id="tantangan3" name="TantanganIntim" value="Merasa suami kurang puas atau hubungan terasa monoton"> <label for="tantangan3">Merasa suami kurang puas atau hubungan terasa monoton.</label></div>
+                <div class="radio-option"><input type="radio" id="tantangan4" name="TantanganIntim" value="Secara umum tidak ada tantangan berarti"> <label for="tantangan4">Secara umum tidak ada tantangan berarti.</label></div>
+            </div>
+            <div class="question">
+                <label>5. Secara jujur, pernahkah Bunda merasa 'berbeda' atau kurang kencang pada area Miss V, terutama jika sudah pernah melahirkan?</label>
+                <div class="radio-option"><input type="radio" id="missv1" name="KondisiMissV" value="Ya, sangat terasa dan ini memengaruhi kepercayaan diri saya" required> <label for="missv1">Ya, sangat terasa dan ini memengaruhi kepercayaan diri saya.</label></div>
+                <div class="radio-option"><input type="radio" id="missv2" name="KondisiMissV" value="Ya, sedikit terasa perbedaannya"> <label for="missv2">Ya, sedikit terasa perbedaannya.</label></div>
+                <div class="radio-option"><input type="radio" id="missv3" name="KondisiMissV" value="Tidak, saya merasa sama saja"> <label for="missv3">Tidak, saya merasa sama saja.</label></div>
+                <div class="radio-option"><input type="radio"id="missv4" name="KondisiMissV" value="Saya belum pernah melahirkan"> <label for="missv4">Saya belum pernah melahirkan.</label></div>
+            </div>
+            <div class="question">
+                <label>6. Seberapa terbuka Bunda dengan solusi herbal tradisional (seperti jamu atau ramuan) untuk merawat area kewanitaan?</label>
+                <div class="radio-option"><input type="radio" id="herbal1" name="SolusiHerbal" value="Sangat terbuka dan percaya khasiatnya" required> <label for="herbal1">Sangat terbuka dan percaya khasiatnya.</label></div>
+                <div class="radio-option"><input type="radio" id="herbal2" name="SolusiHerbal" value="Tertarik, tapi ingin tahu yang aman dan praktis"> <label for="herbal2">Tertarik, tapi ingin tahu yang aman dan praktis.</label></div>
+                <div class="radio-option"><input type="radio" id="herbal3" name="SolusiHerbal" value="Sedikit ragu / Belum pernah coba"> <label for="herbal3">Sedikit ragu / Belum pernah coba.</label></div>
+            </div>
+            <button type="submit" id="submit-button">Langkah Berikutnya &raquo;</button>
+        </form>
+    </div>
+
+    <div class="popup-overlay" id="popup">
+        <div class="popup-content">
+            <h3>Satu Langkah Terakhir, Bunda!</h3>
+            <p>Karena hasilnya bersifat sangat pribadi, kami akan mengirimkannya langsung melalui chat personal di WhatsApp.</p>
+            <label for="popup-whatsapp">Mohon isi nomor WhatsApp yang aktif:</label>
+            <input type="tel" id="popup-whatsapp" placeholder="Contoh: 081234567890" required>
+            <button id="popup-submit-button">Kirim & Dapatkan Hasil</button>
+        </div>
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxnOPUhs1IUf-NtvPhVyrt2Uj4GGkC3z7aI1DGVAocMBgroX3nf1txjBzf0zSImXIFbVg/exec';
+
+        const form = document.getElementById('kuesionerForm');
+        const submitButton = document.getElementById('submit-button');
+        const popup = document.getElementById('popup');
+        const popupSubmitButton = document.getElementById('popup-submit-button');
+        const whatsappInput = document.getElementById('popup-whatsapp');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            popup.style.display = 'flex'; 
+        });
+
+        popupSubmitButton.addEventListener('click', e => {
+            e.preventDefault();
+            if (whatsappInput.value.trim() === '') {
+                alert('Mohon isi nomor WhatsApp Anda untuk melanjutkan.');
+                return;
+            }
+            const formData = new FormData(form);
+            formData.append('NoWhatsApp', whatsappInput.value);
+
+            popupSubmitButton.disabled = true;
+            popupSubmitButton.textContent = 'Mengirim...';
+
+            fetch(scriptURL, { method: 'POST', body: formData})
+                .then(data => {
+                    console.log('Success!', data);
+                    window.location.href = 'https://faris-fakhruddin.myscalev.com/thank-you-page-mjkz';
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert('Oops! Terjadi kesalahan. Silakan coba lagi.');
+                    popupSubmitButton.disabled = false;
+                    popupSubmitButton.textContent = 'Kirim & Dapatkan Hasil';
+                });
+        });
+    </script>
+</body>
+</html>
